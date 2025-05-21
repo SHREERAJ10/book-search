@@ -2,6 +2,8 @@ import React from 'react'
 
 function BookCard({bookData}) {
 
+  // Retrieves the thumbnail URL of a book from the bookData object.
+  // The optional chaining (?.) ensures that the code doesn't throw an error if any of the properties are undefined or null.
   let thumbnailUrl = bookData?.volumeInfo?.imageLinks?.thumbnail;
 
   return (

@@ -10,13 +10,14 @@ function App() {
 
   useEffect(()=>{
     
+    //fetch data only if fetchData state is set to true
     if(fetchData){
         const fetchBookData = async ()=>{
           try{
             const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`);
             const data = await response.json();
-            setBookData(data.items);
-            setFetchData(false);
+            setBookData(data.items); //Storing retrieved data/array in bookData state
+            setFetchData(false); //set state to false, in order to avoid another data fetch
           }
           catch (err){
             alert("Error fetching the data " + err);
