@@ -9,16 +9,22 @@ function App() {
   const [bookData,setBookData] = useState([]);
 
   useEffect(()=>{
+    
     if(fetchData){
-      const fetchData = async ()=>{
-        const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`);
-        const data = await response.json();
-        setBookData(data.items);
-      }
-      fetchData();
-      
-      setFetchData(false);
+        const fetchBookData = async ()=>{
+          try{
+            const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`);
+            const data = await response.json();
+            setBookData(data.items);
+            setFetchData(false);
+          }
+          catch (err){
+            alert("Error fetching the data " + err);
+          }
+      };
+      fetchBookData();  
     }
+
   },[fetchData]);
 
   return (
