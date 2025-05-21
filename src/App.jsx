@@ -21,12 +21,24 @@ function App() {
   },[fetchData]);
 
   return (
-    <div className = "w-full h-screen bg-gradient-to-r from-slate-950 to-slate-800 text-gray-100 font-custom flex flex-col items-center gap-12">
-      <h1 className = "text-4xl text-[#faf3ee] mt-8">Book Search</h1>
-      <SearchBar searchTerm = {searchTerm} setSearchTerm={setSearchTerm} setFetchData={setFetchData}/>
+    <div className = "w-full text-gray-100 font-custom flex flex-col items-center justify-between gap-12">
+
+      <div className="flex flex-col items-center gap-6">
+        <h1 className = "text-4xl mt-8 text-[#faf3ee] lg:text-5xl">Book Search</h1>
+        <SearchBar searchTerm = {searchTerm} setSearchTerm={setSearchTerm} setFetchData={setFetchData}/>
+      </div>
       {/* <h2 className = "text-2xl">Popular Books</h2> */}
-      {bookData.length!=0?<BookCard bookData={bookData}/>:null}
+      {/* {bookData.length!=0?<BookCard bookData={bookData}/>:null} */}
       
+      <div className="flex flex-wrap w-4/5 justify-center gap-8">
+        {bookData.length!=0?
+          (bookData.map((data)=>{
+            return <BookCard key={data.id} bookData={data} />  
+          })):
+          null
+      }
+
+      </div>
     </div>
 
   )
