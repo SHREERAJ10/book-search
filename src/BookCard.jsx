@@ -2,16 +2,16 @@ import React from 'react'
 
 function BookCard({bookData}) {
 
+  let thumbnailUrl = bookData?.volumeInfo?.imageLinks?.thumbnail;
+
   return (
-    <div className="flex flex-col items-center gap-2 w-52 h-[300px] bg-gray-900 shadow-md rounded-lg">
-        <div className="w-[128px] h-[196px] mt-6 bg-red-500 rounded-lg">
-            {/* <img src="null" alt="" className="rounded-lg" /> */}
-            <img src={bookData.volumeInfo.imageLinks.thumbnail} alt="" className="rounded-lg" />
+    <div className="flex flex-col items-center justify-center gap-2 w-52 min-h-[300px] bg-gray-900 shadow-md rounded-lg py-4">
+        <div className="w-[128px] max-h-[196px] rounded-lg">
+            <img src={thumbnailUrl || "https://placehold.co/128x196?text=Preview\\nNot\\nAvailable&font=poppins"} alt="" className="rounded-lg bg-cover max-h-[196px]" />
         </div>
-        {/* <p className="text-gray-100">title</p>
-        <p className="text-gray-400">author</p> */}
-        <p className="text-gray-100">{bookData.volumeInfo.title}</p>
-        <p className="text-gray-400">{bookData.volumeInfo.authors[0]}</p>
+
+        <p className="text-gray-100 text-center">{bookData.volumeInfo.title}</p>
+        <p className="text-gray-400 text-center">{bookData.volumeInfo.authors}</p>
     </div>
   )
 }
